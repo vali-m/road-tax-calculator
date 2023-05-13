@@ -4,11 +4,14 @@ function loadMapScenario() {
         center: new Microsoft.Maps.Location(45.750046, 21.229915),
         zoom: 13.3
     });
+
     Microsoft.Maps.loadModule('Microsoft.Maps.Directions', function () {
         var directionsManager = new Microsoft.Maps.Directions.DirectionsManager(map);
 
         //directionsManager.setRenderOptions({ itineraryContainer: document.getElementById('printoutPanel') });
         directionsManager.setRequestOptions({
+            //routePathOutput: Microsoft.Maps.Directions.RoutePathOutput.routePoints,
+            routeAttributes: 'routePath',
             routeMode: Microsoft.Maps.Directions.RouteMode.truck,
             vehicleSpec: {
                 dimensionUnit: 'm',
@@ -37,17 +40,44 @@ function loadMapScenario() {
         });
         directionsManager.addWaypoint(start);
         directionsManager.addWaypoint(end);
-        console.log(directionsManager);
-
         
         // Add an event handler to the DirectionsManager
         Microsoft.Maps.Events.addHandler(directionsManager, 'directionsUpdated', function (ev) {
             console.log(ev);
+            var routeLegs = ev.route[0].routeLegs;
+            var streets = [];
+            for (var i = 0; i < routeLegs.length; i++) {
+                var itinerary = routeLegs[i].itineraryItems;
+                for (var j = 0; j < itinerary.length; j++) {
+                    var instruction = itinerary[j].preIntersectionHints[0];
+                    console.log(instruction);
+                    /*
+                    var streetName = instruction.match(/on (.+?)\./)[1];
+                    console.log(streetName);
+                    */
+
+                    streets.push({"name": instruction});
+                }
+            }
         });
 
         // Calculate the truck route and display it on the map
         directionsManager.calculateDirections();
-        
-        console.log(directionsManager);
+    });
+
+    $.ajax({
+        url: "/api/CostCalculation/distance",
+        method: "POST",
+        data: {
+            "streets": streets,
+            "routeLengthInKm": 25.779,
+            "weightInTons": 5
+        },
+        success: function(res) {
+            console.log(res);
+        },
+        error: function(res) {
+            console.log(res);
+        }
     });
 }

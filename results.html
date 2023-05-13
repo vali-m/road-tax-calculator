@@ -32,6 +32,56 @@
 
         <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?key=Agd5Z1Gqq5fi-aPgewWpv4Swx3gDHR3l1EGopKZiiSl303M0k5uW5YLaSb0WWUAr&callback=loadMapScenario' async defer></script>
         <script type='text/javascript' src='js/results.js'></script>
-        
+
+
+        <script type='text/javascript' src='js/jquery-3.7.0.min.js'></script>
+        <script>
+            /*
+            $.ajax({
+                url: "https://dev.virtualearth.net/REST/v1/Routes/TruckAsync?key=AmEX5CRS2P23-O_2hDO7MqV7ToNTAODHBS7MhcNOA5sRybs5hAxqPspyOWV2PmeR",
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                data: {
+                    "waypoints": [
+                        {
+                            "latitude": 45.7631222,
+                            "longitude": 21.1052788
+                        },
+                        {
+                            "latitude": 45.7644241,
+                            "longitude": 21.2996518
+                        }
+                    ],
+                    "vehicleSpec": {
+                        "dimensionUnit": "m",
+                        "weightUnit": "kg",
+                        "vehicleHeight": 5,
+                        "vehicleWidth": 3.5,
+                        "vehicleLength": 30,
+                        "vehicleWeight": 5000,
+                        "vehicleAxles": 3,
+                        "vehicleTrailers": 2,
+                        "vehicleSemi": true,
+                        "vehicleMaxGradient": 10,
+                        "vehicleMinTurnRadius": 15,
+                        "vehicleAvoidCrossWind": true,
+                        "vehicleAvoidGroundingRisk": true,
+                        "vehicleHazardousMaterials": "F",
+                        "vehicleHazardousPermits": "F"
+                    },
+                    "distanceUnit": "km",
+                    "optimize": "time",
+                    "routeAttributes": "routePath"
+                },
+                success: function(res) {
+                    console.log(res);
+                },
+                error: function(res) {
+                    console.log(res);
+                }
+            });*/
+        </script>
     </body>
 </html>
