@@ -50,20 +50,7 @@ function loadMapScenario() {
         });
 
         // Calculate the truck route and display it on the map
-        directionsManager.calculateDirections({
-            /*
-            truckRoute: true,
-            truckRouteOptions: truckRouteOptions,*/
-            success: function(response) {
-                console.log("test1");
-                var route = response.route[0];
-                console.log(route);
-            },
-            error: function(error) {
-              console.log(error.message);
-              console.log("err");
-            }
-        });
+        directionsManager.calculateDirections();
         
         console.log(directionsManager);
     });
