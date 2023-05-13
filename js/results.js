@@ -33,14 +33,10 @@ function loadMapScenario() {
             location: new Microsoft.Maps.Location(45.7631222, 21.1052788)
         });
         var wp2 = new Microsoft.Maps.Directions.Waypoint({
-            location: new Microsoft.Maps.Location(45.746409, 21.256399)
-        });
-        var wp3 = new Microsoft.Maps.Directions.Waypoint({
             location: new Microsoft.Maps.Location(45.7644241, 21.2996518)
         });
         directionsManager.addWaypoint(wp1);
         directionsManager.addWaypoint(wp2);
-        directionsManager.addWaypoint(wp3);
         console.log(directionsManager);
 
         
