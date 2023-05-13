@@ -39,7 +39,7 @@ function loadMapScenario() {
         directionsManager.addWaypoint(end);
         console.log(directionsManager);
 
-        
+
         // Add an event handler to the DirectionsManager
         Microsoft.Maps.Events.addHandler(directionsManager, 'directionsUpdated', function (ev) {
             console.log(ev);
@@ -47,20 +47,36 @@ function loadMapScenario() {
 
 
         // Add a click event listener to the map
-        Microsoft.Maps.Events.addHandler(map, 'click', function(e) {
+        Microsoft.Maps.Events.addHandler(map, 'click', function (e) {
             // Get the location of the click
             var location = e.location;
 
             directionsManager.removeWaypoint(end);
 
-            directionsManager.addWaypoint(new Microsoft.Maps.Directions.Waypoint({ location: location }));
+
+            // var pushpinOptions = { icon: 'https://www.bingmapsportal.com/Content/images/poi_custom.png', width: 30, height: 30 };
+            var pushpin = new Microsoft.Maps.Pushpin(location);
+
+            let waypoint = new Microsoft.Maps.Directions.Waypoint({location: location});
+
+
+            Microsoft.Maps.Events.addHandler(pushpin, 'click', function () {
+                directionsManager.removeWaypoint(waypoint)
+                pushpin.setOptions({visible: false});
+                directionsManager.calculateDirections();
+
+            });
+            map.entities.push(pushpin);
+
+
+            directionsManager.addWaypoint(waypoint);
             directionsManager.addWaypoint(end);
             directionsManager.calculateDirections();
         });
 
         // Calculate the truck route and display it on the map
         directionsManager.calculateDirections();
-        
+
         console.log(directionsManager);
     });
 }
