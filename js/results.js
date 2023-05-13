@@ -29,14 +29,14 @@ function loadMapScenario() {
             }
         });
 
-        var wp1 = new Microsoft.Maps.Directions.Waypoint({
+        var start = new Microsoft.Maps.Directions.Waypoint({
             location: new Microsoft.Maps.Location(45.7631222, 21.1052788)
         });
-        var wp2 = new Microsoft.Maps.Directions.Waypoint({
+        var end = new Microsoft.Maps.Directions.Waypoint({
             location: new Microsoft.Maps.Location(45.7644241, 21.2996518)
         });
-        directionsManager.addWaypoint(wp1);
-        directionsManager.addWaypoint(wp2);
+        directionsManager.addWaypoint(start);
+        directionsManager.addWaypoint(end);
         console.log(directionsManager);
 
         
