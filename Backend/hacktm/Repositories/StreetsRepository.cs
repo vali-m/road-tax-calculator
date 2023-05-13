@@ -10,7 +10,7 @@ namespace hacktm.Repositories
             base(context)
         {
         }
-
+        /*
         public Street FindByName(string name)
         {
             var query = base.GetQuery().ToList();
@@ -18,7 +18,7 @@ namespace hacktm.Repositories
 
             return query.Where(s => this.IsSimilarW(s.Name, name, 0.7));
             return null;
-        }
+        }*/
 
         private double Compare(string a, string b)
         {
