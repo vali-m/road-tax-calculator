@@ -54,8 +54,8 @@ function loadMapScenario() {
             directionsManager.removeWaypoint(end);
 
 
-            // var pushpinOptions = { icon: 'https://www.bingmapsportal.com/Content/images/poi_custom.png', width: 30, height: 30 };
-            var pushpin = new Microsoft.Maps.Pushpin(location);
+            var pushpinOptions = { icon: './assets/pin.svg', width: 3, height: 30 };
+            var pushpin = new Microsoft.Maps.Pushpin(location, pushpinOptions);
 
             let waypoint = new Microsoft.Maps.Directions.Waypoint({location: location});
 
