@@ -45,6 +45,19 @@ function loadMapScenario() {
             console.log(ev);
         });
 
+
+        // Add a click event listener to the map
+        Microsoft.Maps.Events.addHandler(map, 'click', function(e) {
+            // Get the location of the click
+            var location = e.location;
+
+            directionsManager.removeWaypoint(end);
+
+            directionsManager.addWaypoint(new Microsoft.Maps.Directions.Waypoint({ location: location }));
+            directionsManager.addWaypoint(end);
+            directionsManager.calculateDirections();
+        });
+
         // Calculate the truck route and display it on the map
         directionsManager.calculateDirections();
         
