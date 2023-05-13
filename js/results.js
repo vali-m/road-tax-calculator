@@ -29,18 +29,14 @@ function loadMapScenario() {
             }
         });
 
-        var wp1 = new Microsoft.Maps.Directions.Waypoint({
+        var start = new Microsoft.Maps.Directions.Waypoint({
             location: new Microsoft.Maps.Location(45.7631222, 21.1052788)
         });
-        var wp2 = new Microsoft.Maps.Directions.Waypoint({
-            location: new Microsoft.Maps.Location(45.746409, 21.256399)
-        });
-        var wp3 = new Microsoft.Maps.Directions.Waypoint({
+        var end = new Microsoft.Maps.Directions.Waypoint({
             location: new Microsoft.Maps.Location(45.7644241, 21.2996518)
         });
-        directionsManager.addWaypoint(wp1);
-        directionsManager.addWaypoint(wp2);
-        directionsManager.addWaypoint(wp3);
+        directionsManager.addWaypoint(start);
+        directionsManager.addWaypoint(end);
         console.log(directionsManager);
 
         
@@ -50,20 +46,7 @@ function loadMapScenario() {
         });
 
         // Calculate the truck route and display it on the map
-        directionsManager.calculateDirections({
-            /*
-            truckRoute: true,
-            truckRouteOptions: truckRouteOptions,*/
-            success: function(response) {
-                console.log("test1");
-                var route = response.route[0];
-                console.log(route);
-            },
-            error: function(error) {
-              console.log(error.message);
-              console.log("err");
-            }
-        });
+        directionsManager.calculateDirections();
         
         console.log(directionsManager);
     });
