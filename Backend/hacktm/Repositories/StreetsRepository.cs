@@ -13,10 +13,10 @@ namespace hacktm.Repositories
 
         public Street FindByName(string name)
         {
-            //var query = base.GetQuery().ToList();
-            //query.Sort(new )
+            var query = base.GetQuery().ToList();
+            query.Sort(delegate (Street s, ) { return c1.date.CompareTo(c2.date); })
 
-            //return query.Where(s => this.IsSimilarW(s.Name, name, 0.7));
+            return query.Where(s => this.IsSimilarW(s.Name, name, 0.7));
             return null;
         }
 
