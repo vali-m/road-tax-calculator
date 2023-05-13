@@ -13,31 +13,37 @@ namespace hacktm.Repositories
 
         public Street FindByName(string name)
         {
-            var query = base.GetQuery().ToList();
-            query.Sort(delegate (Street s, ) { return c1.date.CompareTo(c2.date); })
+            return base.GetQuery().Where(s => this.Compare(s.Name, name)).FirstOrDefault();
+            //var simPairs = new List<Tuple<Street, double>>();
+            //foreach(var s in query)
+            //{
+            //    var similarity = this.Compare(s.Name, name);
+            //    if (similarity > 0.7)
+            //        simPairs.Add(new Tuple<Street, double>(s, similarity));
+            //}
 
-            return query.Where(s => this.IsSimilarW(s.Name, name, 0.7));
-            return null;
+            //if (simPairs.Count == 0)
+            //    return null;
+
+            //Tuple<Street, double> result = simPairs[0];
+
+            //foreach (var p in simPairs)
+            //{
+            //    if(p.Item2 > result.Item2)
+            //        result = p;
+            //}
+
+            //return result.Item1;
         }
 
-        private double Compare(string a, string b)
+        private bool Compare(string a, string b)
         {
             string[] aw = a.Split(new char[] { ' ', ',' }, StringSplitOptions.RemoveEmptyEntries);
             string[] bw = b.Split(new char[] { ' ', ',' }, StringSplitOptions.RemoveEmptyEntries);
 
 
             var similar = aw.Intersect(bw, StringComparer.OrdinalIgnoreCase).Count();
-            return (double)similar / aw.Length;
-        }
-
-        private bool IsSimilarW(string a, string b, double similarity)
-        {
-            string[] aw = a.Split(new char[] { ' ', ',' }, StringSplitOptions.RemoveEmptyEntries);
-            string[] bw = b.Split(new char[] { ' ', ',' }, StringSplitOptions.RemoveEmptyEntries);
-
-
-            var similar = aw.Intersect(bw, StringComparer.OrdinalIgnoreCase).Count();
-            return similar / aw.Length >= similarity;
+            return similar >= 1;
         }
     }
 }
